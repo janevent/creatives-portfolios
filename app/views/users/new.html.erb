@@ -1,1 +1,21 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<h1>Sign Up</h1>
+<form method="POST" action="/users">
+    <p>
+        <label for="user[artist_name]">Name of Artist:</label>
+        <input type="text" name="user[artist_name]"/>
+    </p>
+    <p>
+        <label for="user[email]">Email:</label>
+        <input type="text" name="user[email]"/>
+    </p>
+    <p>
+        <label for="user[password]">Password:</label>
+        <input type="password" name="user[password]"/>
+    </p>
+    <p>
+        <label for="user[artist_statement]">Statement:</label>
+        <input type="text" name="user[artist_statement]"/>
+    </p>
+    <input type="submit" value="Sign Up">
+</form>
+
