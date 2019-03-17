@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
   # GET: /users/5
   get "/users/:id" do
+    @user = User.find_by(id: params[:id])
     erb :"/users/show.html"
   end
 
