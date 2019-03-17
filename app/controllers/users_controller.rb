@@ -14,8 +14,8 @@ class UsersController < ApplicationController
   post "/users" do
     if !params[:user][:artist_name].empty? && !params[:user][:email].empty? && !params[:user][:password].empty? && !params[:user][:artist_statement].empty?
       @user = User.create(artist_name: params[:user][:artist_name], email: params[:user][:email], password: params[:user][:password], artist_statement: params[:user][:artist_statement])
-      redirect "/users"
       session[:user_id] = @user.id
+      redirect "/users"
     else
       redirect "/users/new"
     end

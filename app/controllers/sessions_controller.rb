@@ -1,7 +1,11 @@
 class SessionsController < ApplicationController
     get "/login" do
-        @user = User.new
-        erb :"/sessions/new"
+        if !logged_in?
+            @user = User.new
+            erb :"/sessions/new"
+        else
+            redirect "/users"
+        end
 
     end
 
