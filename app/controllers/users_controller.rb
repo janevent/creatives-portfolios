@@ -35,6 +35,8 @@ class UsersController < ApplicationController
 
   # DELETE: /users/5/delete
   delete "/users/:id/delete" do
+    @user = User.find(params[:id])
+    @user.destroy
     redirect "/users"
   end
 end
