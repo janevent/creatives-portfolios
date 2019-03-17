@@ -12,8 +12,13 @@ class UsersController < ApplicationController
 
   # POST: /users
   post "/users" do
-    User.create(user_name: params[:user][:user_name], artist_name: params[:user][:artist_name], email: params[:user][:email], password: params[:user][:password], artist_statement: params[:user][:artist_statement])
-    redirect "/users"
+    if !params[:user][:artist_name].empty? && !params[:user][:email].empty? && !params[:user][:password].empty? && !params[:user][:artist_statement].empty?
+      @user = User.create(artist_name: params[:user][:artist_name], email: params[:user][:email], password: params[:user][:password], artist_statement: params[:user][:artist_statement])
+      redirect "/users"
+      session[:user_id] = @user.id
+    else
+      redirect "/users/new"
+    end
   end
 
   # GET: /users/5
