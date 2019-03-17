@@ -21,6 +21,27 @@ class UsersController < ApplicationController
     end
   end
 
+  get '/users/login' do
+     if !logged_in?
+         @user = User.new
+         erb :"/users/login.html"
+     else
+         redirect "/users"
+     end
+
+ end
+
+post '/users/login' do 
+    @user = User.find_by(email: params[:user][:email])
+    if @user && @user.authenticate(params[:user][:password])
+        session[:user_id] = @user.id
+        redirect "users/#{@user.id}"
+        erb :"/users/show.html"
+    else 
+        redirect "/users/login"
+    end
+end
+
   # GET: /users/5
   get "/users/:id" do
     @user = User.find_by(id: params[:id])
