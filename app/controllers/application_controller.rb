@@ -9,8 +9,22 @@ class ApplicationController < Sinatra::Base
     set :session_secret, ENV.fetch('SESSION_SECRET')
   end
 
+
+
   get "/" do
     erb :welcome
+  end
+
+  helpers do 
+    def logged_in?
+      !!current_users
+    end
+    
+    def current_user
+      if session[:user_id]
+        User.find(session[:id])
+      end
+    end
   end
 
 end
