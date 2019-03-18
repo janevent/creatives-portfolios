@@ -1,4 +1,8 @@
 <h1>This is the show page for an individual instance of your model.</h1>
 <h2>Artist Name: <%=@user.artist_name%> </h2>
 <p>Email: <%=@user.email%> </p>
-<p>Statement: <%=@user.artist_statement%> </p>
+<p>Statement: <%=@user.artist_statement%></p>
+<br>
+<a href="/users/<%=@user.id%>/edit">Edit</a>
+<br>
+<a href="/users/logout">Log Out</a>

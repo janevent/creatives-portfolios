@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   # GET: /users
   get "/users" do
+    @users = User.all
     erb :"/users/index.html"
   end
 
@@ -42,9 +43,14 @@ post '/users/login' do
     end
 end
 
+get "/users/logout" do 
+  session.clear
+  redirect "/users"
+end
+
   # GET: /users/5
   get "/users/:id" do
-    @user = User.find_by(id: params[:id])
+    @user = User.find(params[:id])
     erb :"/users/show.html"
   end
 
