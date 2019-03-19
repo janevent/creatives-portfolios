@@ -58,12 +58,12 @@ end
 
   # GET: /users/5/edit
   get "/users/:id/edit" do
-    #if logged_in?
+    if logged_in?
       @user = User.find(params[:id])
       erb :"/users/edit.html"
-    #else 
-      #redirect "/users/login"
-    #end
+    else 
+      redirect "/users/login"
+    end
   end
 
   # PATCH: /users/5
