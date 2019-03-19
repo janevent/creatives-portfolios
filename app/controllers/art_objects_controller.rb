@@ -14,7 +14,7 @@ class ArtObjectsController < ApplicationController
   # POST: /art_objects
   #
   post "/art_objects" do
-    if logged_in?
+    if logged_in? && !params[:art_object][:title].empty?
       @art_object = ArtObject.create(user_id: session[user_id],image: params[:art_object][:image], title: params[:art_object][:title], date: params[:art_object][:date], form: params[:art_object][:form], description: params[:art_object][:description])
 
       redirect "/art_objects"
@@ -25,7 +25,12 @@ class ArtObjectsController < ApplicationController
 
   # GET: /art_objects/5
   get "/art_objects/:id" do
-    erb :"/art_objects/show.html"
+    @art_object = ArtObject.find(params[:id])
+    if @art_object && session[:user_id] == @art_object.user_id
+      erb :"/art_objects/show.html"
+    else 
+      redirect "/art_objects"
+    end
   end
 
   # GET: /art_objects/5/edit
