@@ -2,6 +2,7 @@ class ArtObjectsController < ApplicationController
 
   # GET: /art_objects
   get "/art_objects" do
+    @art_objects = ArtObject.all
     erb :"/art_objects/index.html"
   end
 
@@ -11,9 +12,10 @@ class ArtObjectsController < ApplicationController
   end
 
   # POST: /art_objects
+  #
   post "/art_objects" do
     if logged_in?
-      @art_object = ArtObject.create(user_id: session[user_id],image: params[:art_object][:image] title: params[:art_object][:title], date: params[:art_object][:date], form: params[:art_object][:form], description: params[:art_object][:description])
+      @art_object = ArtObject.create(user_id: session[user_id],image: params[:art_object][:image], title: params[:art_object][:title], date: params[:art_object][:date], form: params[:art_object][:form], description: params[:art_object][:description])
 
       redirect "/art_objects"
     else

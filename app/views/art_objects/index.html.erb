@@ -1,1 +1,9 @@
 <h1>This is the Model's index page.</h1>
+<%@art_objects.each do |art_object|%>
+    <p><%=art_object.title%><p>
+    <p><%=art_object.user.artist_name%><p>
+    <p><%=art_object.image%><p>
+    <p><%=art_object.date%></p>
+    <p><%=art_object.form%><p>
+    <p><%=art_object.description%><p>
+<%end%>
