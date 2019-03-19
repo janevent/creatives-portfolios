@@ -4,3 +4,10 @@
 <p><%=@art_object.date%></p>
 <p><%=@art_object.form%></p>
 <p><%=@art_object.description%></p>
+
+<a href="art_objects/#{art_object.id}/edit">Edit</a>
+
+<form method="POST" action="art_objects/#{@art_object.id}/delete">
+    <input id="hidden" type"hidden" name="_method" value="delete"/>
+    <input type="submit" value="Delete"/>
+</form>

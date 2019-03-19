@@ -32,15 +32,17 @@ class UsersController < ApplicationController
 
  end
 
-post '/users/login' do 
-    @user = User.find_by(email: params[:user][:email])
-    if @user && @user.authenticate(params[:user][:password])
-        session[:user_id] = @user.id
-        redirect "users/#{@user.id}"
-        erb :"/users/show.html"
-    else 
-        redirect "/users/login"
-    end
+post '/users/login' do
+  #raise params.inspect
+ 
+  @user = User.find_by(email: params[:user][:email])
+  if @user && @user.authenticate(params[:user][:password])
+    session[:user_id] = @user.id
+    redirect "users/#{@user.id}"
+    
+  else 
+    redirect "/users/login"
+  end
 end
 
 get "/users/logout" do 
@@ -56,13 +58,29 @@ end
 
   # GET: /users/5/edit
   get "/users/:id/edit" do
-    @user = User.find_by(id: params[:id])
-    erb :"/users/edit.html"
+    #if logged_in?
+      @user = User.find(params[:id])
+      erb :"/users/edit.html"
+    #else 
+      #redirect "/users/login"
+    #end
   end
 
   # PATCH: /users/5
   patch "/users/:id" do
-    redirect "/users/:id"
+    
+    if logged_in?
+      if params[:user][:email] != "" && params[:user][:password] != ""
+        @user = User.find(params[:id])
+        @user.update(artist_name: params[:user][:artist_name], email: params[:user][:email], artist_statement: params[:user][:artist_statement])
+        redirect "/users/#{@user.id}"
+      else 
+        redirect "/users/#{params[:id]/edit}"
+      end
+      
+    else 
+      redirect "/users/login"
+    end
   end
 
   # DELETE: /users/5/delete
