@@ -40,6 +40,7 @@ class ArtObjectsController < ApplicationController
 
   # PATCH: /art_objects/5
   patch "/art_objects/:id" do
+    @user = User.find(params[:id])
     redirect "/art_objects/:id"
   end
 
