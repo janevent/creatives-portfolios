@@ -12,7 +12,13 @@ class ArtObjectsController < ApplicationController
 
   # POST: /art_objects
   post "/art_objects" do
-    redirect "/art_objects"
+    if logged_in?
+      @art_object = ArtObject.create(user_id: session[user_id],image: params[:art_object][:image] title: params[:art_object][:title], date: params[:art_object][:date], form: params[:art_object][:form], description: params[:art_object][:description])
+
+      redirect "/art_objects"
+    else
+      redirect "/users/login"
+    end
   end
 
   # GET: /art_objects/5
