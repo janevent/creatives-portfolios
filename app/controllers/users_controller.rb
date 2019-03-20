@@ -83,6 +83,12 @@ end
     end
   end
 
+  get "users/:id/art_objects" do
+    @user = User.find(params[:id])
+    @art_objects = @user.art_objects
+    erb :"/users/art_object.html"
+  end
+
   # DELETE: /users/5/delete
   delete "/users/:id/delete" do
     @user = User.find(params[:id])
