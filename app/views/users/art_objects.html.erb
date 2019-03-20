@@ -1,0 +1,8 @@
+<h1><%=@user.artist_name%></h1>
+<%@art_objects.each do |art_object|%>
+    <h2><%=art_object.title%></h2>
+    <p><%=art_object.date%></p>
+    <p><%=art_object.image%></p>
+    <p><%=art_object.description%></p>
+<%end%>
+
