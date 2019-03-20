@@ -44,7 +44,8 @@ class ArtObjectsController < ApplicationController
 
   # GET: /art_objects/5/edit
   get "/art_objects/:id/edit" do
-    if logged_in?
+    @art_object = ArtObject.find(params[:id])
+    if logged_in? && current_user.id == @art_object.user_id 
       @art_object = ArtObject.find(params[:id])
       erb :"/art_objects/edit.html"
     else
