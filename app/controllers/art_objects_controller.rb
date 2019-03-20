@@ -20,7 +20,7 @@ class ArtObjectsController < ApplicationController
   post "/art_objects" do
     if logged_in? && !params[:art_object][:title].empty?
       @art_object = ArtObject.create(user_id: current_user.id, title: params[:art_object][:title], date: params[:art_object][:date], form: params[:art_object][:form], description: params[:art_object][:description])
-      if params[:art_object][:image] == ~/.|.(png|jpeg|jpg|gif)$/ 
+      if "#{params[:art_object][:image]}" =~/.|.(png|jpeg|jpg|gif)$/ 
         @art_object.image = params[:art_object][:image]
         redirect "/art_objects"
       else
@@ -57,7 +57,7 @@ class ArtObjectsController < ApplicationController
     if logged_in?
       @art_object = ArtObject.find(params[:id])
       @art_object.update(title: params[:art_object][:title], image: params[:art_object][:image], date: params[:art_object][:date], form: params[:art_object][:form], description: params[:art_object][:description])
-      if params[:art_object][:image] == ~/.|.(png|jpeg|jpg|gif)$/
+      if "#{params[:art_object][:image]}" =~/.|.(png|jpeg|jpg|gif)$/
         @art_object.update(update: params[:art_object][:image])
         redirect "/art_objects/#{@art_object.id}"
       else
