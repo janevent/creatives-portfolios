@@ -19,9 +19,13 @@ class ArtObjectsController < ApplicationController
   #
   post "/art_objects" do
     if logged_in? && !params[:art_object][:title].empty?
-      @art_object = ArtObject.create(user_id: current_user.id, image: params[:art_object][:image], title: params[:art_object][:title], date: params[:art_object][:date], form: params[:art_object][:form], description: params[:art_object][:description])
-
-      redirect "/art_objects"
+      @art_object = ArtObject.create(user_id: current_user.id, title: params[:art_object][:title], date: params[:art_object][:date], form: params[:art_object][:form], description: params[:art_object][:description])
+      if params[:art_object][:image] == ~/.|.(png|jpeg|jpg|gif)$/ 
+        @art_object.image = params[:art_object][:image]
+        redirect "/art_objects"
+      else
+        redirect "/art_objects"
+      end
     else
       redirect "/users/login"
     end
@@ -40,15 +44,28 @@ class ArtObjectsController < ApplicationController
 
   # GET: /art_objects/5/edit
   get "/art_objects/:id/edit" do
-    @art_object = ArtObject.find(params[:id])
-    erb :"/art_objects/edit.html"
+    if logged_in?
+      @art_object = ArtObject.find(params[:id])
+      erb :"/art_objects/edit.html"
+    else
+      redirect "/art_objects"
+    end
   end
 
   # PATCH: /art_objects/5
   patch "/art_objects/:id" do
-    @art_object = ArtObject.find(params[:id])
-    @art_object.update(title: params[:art_object][:title], image: params[:art_object][:image], date: params[:art_object][:date], form: params[:art_object][:form], description: params[:art_object][:description])
-    redirect "/art_objects/#{@art_object.id}"
+    if logged_in?
+      @art_object = ArtObject.find(params[:id])
+      @art_object.update(title: params[:art_object][:title], image: params[:art_object][:image], date: params[:art_object][:date], form: params[:art_object][:form], description: params[:art_object][:description])
+      if params[:art_object][:image] == ~/.|.(png|jpeg|jpg|gif)$/
+        @art_object.update(update: params[:art_object][:image])
+        redirect "/art_objects/#{@art_object.id}"
+      else
+        redirect "/art_objects/#{@art_object.id}"
+      end
+    else
+       "/users/login"
+    end
   end
 
   # DELETE: /art_objects/5/delete
