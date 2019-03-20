@@ -1,25 +1,25 @@
 <h1>Edit Art Work Info</h1>
-<form method="POST" action="/art_objects/#{art_object.id}">
+<form method="POST" action="/art_objects/<%=@art_object.id%>">
 <input id="hidden" type"hidden" name="_method" value="patch"/>
 <p>
     <label for="art_object[title]">Title:</label>
-    <input type="text" id="art_object[title]" name="art_object[title]" value="#{@art_object.id}"/>
+    <input type="text" id="art_object[title]" name="art_object[title]" value="<%=@art_object.title%>"/>
 </p>
 <p>
     <label for="art_object[image]">Link To An Image of Your Work:</label>
-    <input type="text" id="art_object[image] name="art_object[image]" value="#{@art_object.image}"/>
+    <input type="text" id="art_object[image] name="art_object[image]" value="<%=@art_object.image%>"/>
 </p>
 <p>
     <label for="art_object[date]">Date:</label>
-    <input type="text" id="art_object[date]" name="art_object[date]" value="#{@art_object.date}"/>
+    <input type="text" id="art_object[date]" name="art_object[date]" value="<%=@art_object.date%>"/>
 </p>
 <p>
     <label for="art_object[form]">Form:</label>
-    <input type="text" id="art_object[form]" name="art_object[form]" value="#{@art_object.form}"/>
+    <input type="text" id="art_object[form]" name="art_object[form]" value="<%=@art_object.form%>"/>
 </p>
 <p>
     <label for="art_object[description]">Description:</label>
-    <input type="text" id="art_object[description]" name="art_object[description]" value="#{@art_object.description}"/>
+    <input type="text" id="art_object[description]" name="art_object[description]" value="<%=@art_object.description%>"/>
 </p>
 <input type="submit" name="Submit" value="Submit"/>
 </form>
