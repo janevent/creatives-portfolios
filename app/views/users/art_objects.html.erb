@@ -3,7 +3,9 @@
 <%@art_objects.each do |art_object|%>
     <h2><%=art_object.title%></h2>
     <p><%=art_object.date%></p>
-    <p><%=art_object.image%></p>
+    <%if art_object.image != nil%>
+        <p><img src="<%=URI.escape(art_object.image)%>" alt="<%=art_object.title%>" style="max-width: 100%;"/></p>
+    <%end%>
     <p><%=art_object.description%></p>
 <%end%>
 

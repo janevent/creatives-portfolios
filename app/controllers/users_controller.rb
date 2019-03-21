@@ -85,6 +85,7 @@ end
 
   get "/users/:id/art_objects" do
     @user = User.find(params[:id])
+    
     @art_objects = @user.art_objects
     erb :"/users/art_objects.html"
   end
