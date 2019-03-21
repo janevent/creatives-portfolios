@@ -90,9 +90,15 @@ end
   end
 
   # DELETE: /users/5/delete
+  
   delete "/users/:id/delete" do
-    @user = User.find(params[:id])
-    @user.destroy
-    redirect "/users"
+    #if logged_in? && current_user.id == params[:id]
+      @user = User.find(params[:id])
+      @user.destroy
+      session.clear
+      redirect "/users"
+    #else 
+      #redirect "/users"
+    #end
   end
 end

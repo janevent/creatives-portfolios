@@ -22,6 +22,7 @@ class ArtObjectsController < ApplicationController
       @art_object = ArtObject.create(user_id: current_user.id, title: params[:art_object][:title], date: params[:art_object][:date], form: params[:art_object][:form], description: params[:art_object][:description])
       if "#{params[:art_object][:image]}" =~/.|.(png|jpeg|jpg|gif)$/ 
         @art_object.image = params[:art_object][:image]
+        @art_object.save
         redirect "/art_objects"
       else
         redirect "/art_objects"
@@ -56,10 +57,14 @@ class ArtObjectsController < ApplicationController
   # PATCH: /art_objects/5
   patch "/art_objects/:id" do
     if logged_in?
+      
       @art_object = ArtObject.find(params[:id])
       @art_object.update(title: params[:art_object][:title], image: params[:art_object][:image], date: params[:art_object][:date], form: params[:art_object][:form], description: params[:art_object][:description])
+  
       if "#{params[:art_object][:image]}" =~/.|.(png|jpeg|jpg|gif)$/
-        @art_object.update(update: params[:art_object][:image])
+        @art_object.update(image: params[:art_object][:image])
+    
+        
         redirect "/art_objects/#{@art_object.id}"
       else
         redirect "/art_objects/#{@art_object.id}"

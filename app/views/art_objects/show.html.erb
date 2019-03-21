@@ -1,6 +1,6 @@
 <h1><%=@art_object.title%></h1>
 <h2><%=@art_object.user.artist_name%></h2>
-<p><%=@art_object.image%></p>
+<p><img src="<%=URI.escape(@art_object.image)%>" alt="<%=@art_object.title%>" /></p>
 <p><%=@art_object.date%></p>
 <p><%=@art_object.form%></p>
 <p><%=@art_object.description%></p>
