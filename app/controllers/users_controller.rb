@@ -8,7 +8,11 @@ class UsersController < ApplicationController
 
   # GET: /users/new
   get "/users/new" do
-    erb :"/users/new.html"
+    if !logged_in?
+      erb :"/users/new.html"
+    else 
+      redirect "/users"
+    end
   end
 
   # POST: /users

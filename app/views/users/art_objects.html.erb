@@ -6,6 +6,10 @@
     <%if art_object.image != nil%>
         <p><img src="<%=URI.escape(art_object.image)%>" alt="<%=art_object.title%>" style="max-width: 100%;"/></p>
     <%end%>
+    <p><%=art_object.form%></p>
     <p><%=art_object.description%></p>
 <%end%>
-
+<br>
+<a href="/users/<%=@user.id%>">View Artist's Profile</a>
+<br>
+<a href="/users">Back to List of Artists</a>

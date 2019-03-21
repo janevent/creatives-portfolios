@@ -2,6 +2,7 @@
 <%@art_objects.each do |art_object|%>
     <h2><%=art_object.title%></h2>
     <h3><%=art_object.user.artist_name%></h3>
+    <p><a href="/users/<%=art_object.user_id%>">View Profile</a>
     <%if art_object.image != nil%>
         <p><img src="<%=URI.escape(art_object.image)%>" alt="<%=art_object.title%>" style="max-width: 100%;"/></p>
     <%end%>
