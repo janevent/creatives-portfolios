@@ -1,13 +1,15 @@
 <h1><%=@art_object.title%></h1>
 <h2><%=@art_object.user.artist_name%></h2>
-<p><img src="<%=URI.escape(@art_object.image)%>" alt="<%=@art_object.title%>" style="max-width: 100%;" /></p>
+<%if @art_object.image != nil%>
+    <p><img src="<%=URI.escape(@art_object.image)%>" alt="<%=@art_object.title%>" style="max-width: 100%;" /></p>
+<%end%>
 <p><%=@art_object.date%></p>
 <p><%=@art_object.form%></p>
 <p><%=@art_object.description%></p>
 
 <a href="/art_objects/<%=@art_object.id%>/edit">Edit</a>
 
-<form method="POST" action="art_objects/#{@art_object.id}/delete">
+<form method="POST" action="/art_objects/<%=@art_object.id%>/delete">
     <input id="hidden" type"hidden" name="_method" value="delete"/>
     <input type="submit" value="Delete"/>
 </form>
