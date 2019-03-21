@@ -76,6 +76,12 @@ class ArtObjectsController < ApplicationController
 
   # DELETE: /art_objects/5/delete
   delete "/art_objects/:id/delete" do
-    redirect "/art_objects"
+    @art_object = ArtObject.find(params[:id])
+    if logged_in? && current_user.id == @art_object.user.id
+      @art_object.destroy
+      redirect "/art_objects"
+    else 
+      redirect "/art_objects"
+    end
   end
 end
