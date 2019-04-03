@@ -4,6 +4,7 @@
 <p>
     <label for="art_object[title]">Title:</label>
     <input type="text" name="art_object[title]"/>
+    <%=@error%>
 </p>
 <p>
     <label for="art_object[image]">Link To An Image of Your Work:</label>
@@ -11,7 +12,7 @@
 </p>
 <p>
     <label for="art_object[date]">Date:</label>
-    <input type="text" name="art_object[date"/>
+    <input type="text" name="art_object[date]" value="<%=@art_object.date%>"/>
 </p>
 <p>
     <label for="art_object[form]">Form:</label>

@@ -9,6 +9,7 @@ class ArtObjectsController < ApplicationController
   # GET: /art_objects/new
   get "/art_objects/new" do
     if logged_in?
+      @art_object = ArtObject.new
       erb :"/art_objects/new.html"
     else 
       redirect "/users/login"
@@ -18,17 +19,19 @@ class ArtObjectsController < ApplicationController
   # POST: /art_objects
   #
   post "/art_objects" do
-    if logged_in? && !params[:art_object][:title].empty?
-      @art_object = ArtObject.create(user_id: current_user.id, title: params[:art_object][:title], date: params[:art_object][:date], form: params[:art_object][:form], description: params[:art_object][:description])
+    redirect "/users/login" unless logged_in?
+    @art_object = current_user.art_objects.build(title: params[:art_object][:title], date: params[:art_object][:date], form: params[:art_object][:form], description: params[:art_object][:description])
+    if !params[:art_object][:title].empty?
+  
       if "#{params[:art_object][:image]}" =~/.|.(png|jpeg|jpg|gif)$/ 
         @art_object.image = params[:art_object][:image]
-        @art_object.save
-        redirect "/art_objects"
-      else
-        redirect "/art_objects"
+       
       end
+      @art_object.save
+      redirect "/art_objects"
     else
-      redirect "/users/login"
+      @error = "You do not have a title."
+      erb :"/art_objects/new.html"
     end
   end
 
