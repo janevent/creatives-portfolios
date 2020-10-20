@@ -1,5 +1,18 @@
 class UsersController < ApplicationController
 
+  get "/users/:id/delete" do
+    #binding.pry
+    if logged_in? && current_user.id == params[:id].to_i
+      binding.pry
+      @user = User.find(params[:id])
+      @user.destroy
+      session.clear
+      redirect "/users"
+    else 
+      redirect "/users"
+    end
+  end
+
   # GET: /users
   get "/users" do
     @users = User.all
@@ -96,14 +109,5 @@ end
 
   # DELETE: /users/5/delete
   
-  delete "/users/:id/delete" do
-    if logged_in? && current_user.id == params[:id]
-      @user = User.find(params[:id])
-      @user.destroy
-      session.clear
-      redirect "/users"
-    else 
-      redirect "/users"
-    end
-  end
+ 
 end
