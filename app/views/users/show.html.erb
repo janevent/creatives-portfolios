@@ -4,10 +4,10 @@
 <p>Statement: <%=@user.artist_statement%></p>
 <br>
 <div style="color:rgb(49, 254, 99);">
-    <a style="color:rgb(16, 130, 43);" href="/users/<%=@user.id%>/edit">Edit</a>  
-    <a style="color:rgb(163, 57, 251);" href="/users/<%=@user.id%>/art_objects">View Art Work</a>  
-    <a style="color:rgb(163, 57, 251);" href="/art_objects/new">Add Art Work</a>
-    <a style="color:rgb(163, 57, 251);" href="/users">List of Artists</a>
-    <a style="color:rgb(163, 57, 251);" href="/users/login">Log In</a>
-    <a style="color:rgb(163, 57, 251);" href="/users/logout">Log Out</a>
+    <%if session[:user_id] == @user.id %><a style="color:rgb(16, 130, 43);" href="/users/<%=@user.id%>/edit">Edit</a><%end%> 
+    <a style="color:rgb(16, 130, 43);" href="/users/<%=@user.id%>/art_objects">View Art Work</a>  
+    <%if session[:user_id] == @user.id %><a style="color:rgb(16, 130, 43);" href="/art_objects/new">Add Art Work</a><%end%>
+    <a style="color:rgb(16, 130, 43);" href="/users">List of Artists</a>
+    <%if !logged_in? %><a style="color:rgb(16, 130, 43);" href="/users/login">Log In</a><%end%>
+    <%if !!logged_in? %><a style="color:rgb(16, 130, 43);" href="/users/logout">Log Out</a><%end%>
 </div>

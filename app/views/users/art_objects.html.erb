@@ -15,6 +15,10 @@
 <br>
 <a href="/users">Back to List of Artists</a>
 <br>
+<%if !logged_in? %>
 <a href="/users/login">Log In</a>
+<%end%>
 <br>
+<%if !!logged_in? %>
 <a href="/users/login">Log Out</a>
+<%end%>
