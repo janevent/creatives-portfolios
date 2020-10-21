@@ -1,14 +1,19 @@
 <h1>Artists/Creatives</h1>
 <%@users.each do |user|%>
     <h2><%=user.artist_name%></h2>
+    <p><a href="/users/<%=user.id%>/art_objects">Artist's Work</a></p>
     <p><%=user.email%><p>
-    <p><%=user.artist_statement%><p>
-    <a href="/users/<%=user.id%>/art_objects">Artist's Work</a>
+    <p><b>Statement</b>: <%=user.artist_statement%><p>
+    
 <%end%>
 <br>
 <br>
+<%if !logged_in? %>
 <a href="/users/new">Sign Up</a>
 <br>
 <a href="/users/login">Log In</a>
 <br>
+<%end%>
+<%if !!logged_in? %>
 <a href="/users/logout">Log Out</a>
+<%end%>
