@@ -2,13 +2,19 @@
 <h3><%=@user.email%></h3>
 <%@art_objects.each do |art_object|%>
     <h2><%=art_object.title%></h2>
-    <p><a href="/art_objects/<%=art_object.id%>">View Show Page</a></p>
-    <p><%=art_object.date%></p>
     <%if art_object.image != nil%>
         <p><img src="<%=URI.escape(art_object.image)%>" alt="<%=art_object.title%>" style="max-width: 100%;"/></p>
     <%end%>
-    <p><%=art_object.form%></p>
-    <p><%=art_object.description%></p>
+    <p><%=art_object.date%></p>
+    <%if session[:user_id] == @user.id %>
+        <p><a href="/art_objects/<%=art_object.id%>">View Show Page</a></p>
+    <%end%>
+    <%if art_object.form != ""%>
+        <p>Medium: <%=art_object.form%></p>
+    <%end%>
+    <%if art_object.description != "" %>
+        <p>Description: <%=art_object.description%></p>
+    <%end%>
 <%end%>
 <br>
 <a href="/users/<%=@user.id%>">View Artist's Profile</a>
