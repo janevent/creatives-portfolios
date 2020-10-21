@@ -12,6 +12,11 @@
   }
 
   /* --- Welcome Page Styles --- */
+
+  a {
+    color: rgb(49, 254, 99);
+  }
+
   body {
     background-color: rgb(34, 171, 250);
     color: #333;
@@ -54,6 +59,7 @@
   .main {
     overflow: hidden;
   }
+  
 
   .content {
     float: left;
@@ -111,5 +117,9 @@
   h2 {
     font-size: 18px;
     line-height: 24px;
+  }
+
+  .pink {
+    border-color: pink;
   }
 }

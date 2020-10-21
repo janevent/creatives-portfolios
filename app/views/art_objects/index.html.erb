@@ -1,14 +1,14 @@
-<h1>Art Works</h1>
+<h1>Collective Art Works</h1>
 <%@art_objects.each do |art_object|%>
     <h2><%=art_object.title%></h2>
     <h3><%=art_object.user.artist_name%></h3>
-    <p><a href="/users/<%=art_object.user_id%>">View Profile</a>
+    <p><a href="/users/<%=art_object.user_id%>">View Profile</a>    
+    <%if session[:user_id] == art_object.user_id%><a href="/art_objects/<%=art_object.id%>">View Show Page</a><%end%></p>
     <%if art_object.image != nil%>
         <p><img src="<%=URI.escape(art_object.image)%>" alt="<%=art_object.title%>" style="max-width: 100%;"/></p>
     <%end%>
-    <p><%=art_object.date%></p>
-    <p><%=art_object.form%></p>
-    <p><%=art_object.description%></p>
-    <br>
-    <p><a href="/art_objects/<%=art_object.id%>">View Show Page</a></p>
+    <%if art_object.date != ""%><p><%=art_object.date%></p><%end%>
+    <%if art_object.form !=""%><p>Medium: <%=art_object.form%></p><%end%>
+    <%if art_object.description != "" %><p>Description: <%=art_object.description%></p><%end%>
+    <br>    
 <%end%>

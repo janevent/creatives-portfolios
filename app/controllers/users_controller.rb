@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   get "/users/:id/delete" do
     #binding.pry
     if logged_in? && current_user.id == params[:id].to_i
-      binding.pry
+      #binding.pry
       @user = User.find(params[:id])
       @user.destroy
       session.clear
@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
   # GET: /users/new
   get "/users/new" do
+    #binding.pry
     if !logged_in?
       erb :"/users/new.html"
     else 

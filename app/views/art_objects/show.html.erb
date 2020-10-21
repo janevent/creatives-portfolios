@@ -1,5 +1,5 @@
 <h1><%=@art_object.title%></h1>
-<h2><%=@art_object.user.artist_name%></h2>
+<h3><%=@art_object.user.artist_name%></h3>
 <%if @art_object.image != nil%>
     <p><img src="<%=URI.escape(@art_object.image)%>" alt="<%=@art_object.title%>" style="max-width: 100%;" /></p>
 <%end%>
