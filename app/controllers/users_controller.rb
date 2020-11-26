@@ -21,7 +21,6 @@ class UsersController < ApplicationController
 
   # GET: /users/new
   get "/users/new" do
-    #binding.pry
     if !logged_in?
       erb :"/users/new.html"
     else 
